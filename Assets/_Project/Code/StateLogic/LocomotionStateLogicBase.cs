@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Code.StateLogic
 {
-    public class LocomotionStateLogicBase : Logic.States.StateLogic, IOnUpdateLogic
+    public abstract class LocomotionStateLogicBase : Logic.States.StateLogic
     {
-        private const float _threshold = 0.01f;
-        [SerializeField] protected Animator _animator;
         [SerializeField] protected CharacterController _controller;
         [SerializeField] protected StarterAssetsInputs _input;
         [SerializeField] protected GameObject _mainCamera;
@@ -67,7 +65,7 @@ namespace Code.StateLogic
         public float Speed { get; private set; }
         public Vector3 TargetDirection { get; protected set; }
 
-        public void OnUpdate(float deltaTime)
+        protected virtual void Execute(float deltaTime)
         {
             JumpAndGravity(deltaTime);
             GroundedCheck();

@@ -9,6 +9,12 @@ namespace Logic.States
         private IEnumerable<IOnUpdateLogic> m_updateLogic;
         private IEnumerable<IOnLateUpdateLogic> m_lateUpdateLogic;
 
+        public override void ClearLogicToExecute()
+        {
+            m_updateLogic = new List<IOnUpdateLogic>();
+            m_lateUpdateLogic = new List<IOnLateUpdateLogic>();
+        }
+
         public override void SetLogicToExecute(State state)
         {
             var logic = state.Logic;
@@ -27,7 +33,7 @@ namespace Logic.States
         {
             var deltaTime = Time.deltaTime;
             foreach (var lateUpdateLogic in m_lateUpdateLogic) 
-                lateUpdateLogic.OnUpdate(deltaTime);
+                lateUpdateLogic.OnLateUpdate(deltaTime);
         }
     }
 }

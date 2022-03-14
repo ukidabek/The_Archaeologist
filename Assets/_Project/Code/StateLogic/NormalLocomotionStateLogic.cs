@@ -1,8 +1,9 @@
+using Logic.States;
 using UnityEngine;
 
 namespace Code.StateLogic
 {
-	public class NormalLocomotionStateLogic : LocomotionStateLogicBase
+	public class NormalLocomotionStateLogic : LocomotionStateLogicBase, IOnUpdateLogic
 	{
 		private float _rotationVelocity;
 
@@ -19,6 +20,11 @@ namespace Code.StateLogic
 
 			// rotate to face input direction relative to camera position
 			transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+		}
+
+		public void OnUpdate(float deltaTime)
+		{
+			Execute(deltaTime);
 		}
 	}
 }

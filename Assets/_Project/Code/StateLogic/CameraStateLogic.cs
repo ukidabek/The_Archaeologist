@@ -40,7 +40,7 @@ namespace Code.StateLogic
 			_virtualCamera.enabled = false;
 		}
 
-		public void OnUpdate(float deltaTime)
+		public void OnLateUpdate(float deltaTime)
 		{
 			CameraRotation(deltaTime);
 		}

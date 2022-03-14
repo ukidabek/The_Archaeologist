@@ -1,8 +1,9 @@
+using Logic.States;
 using UnityEngine;
 
 namespace Code.StateLogic
 {
-    public class AimShootLocomotionState : LocomotionStateLogicBase
+    public class AimShootLocomotionState : LocomotionStateLogicBase, IOnUpdateLogic
     {
         protected override void Move(float deltaTime)
         {
@@ -15,6 +16,11 @@ namespace Code.StateLogic
         protected override float CalculateSpeed()
         {
             return _input.fire ? MoveSpeed : base.CalculateSpeed();
+        }
+
+        public void OnUpdate(float deltaTime)
+        {
+            Execute(deltaTime);
         }
     }
 }

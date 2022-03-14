@@ -9,23 +9,10 @@ namespace Code.StateLogic
         [SerializeField] protected StarterAssetsInputs _input = null;
         [SerializeField] private bool _pullStatus = true;
         protected override bool Condition => _pullStatus == _input.pull;
-
-        private bool _initialState = false;
-
-        private bool _lock = true;
         
         public override void Activate()
         {
-            _initialState = _input.pull;
-            _lock = true;
-        }
-
-        public override void OnUpdate(float deltaTime)
-        {
-            if (_lock && _initialState == _input.pull)
-                return;
-            _lock = false;
-            base.OnUpdate(deltaTime);
+            _input.pull = false;
         }
     }
 }

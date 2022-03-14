@@ -2,6 +2,6 @@
 {
     public interface IOnLateUpdateLogic
     {
-        void OnUpdate(float deltaTime);
+        void OnLateUpdate(float deltaTime);
     }
 }

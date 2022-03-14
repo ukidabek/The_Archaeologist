@@ -14,10 +14,12 @@ namespace Logic.States
         {
             if(m_currentState == statToEnter) return;
             
+            m_logicExecutor.ClearLogicToExecute();
+            
             m_currentState?.Exit();
             m_currentState = statToEnter;
             m_currentState?.Enter();
-
+            
             m_logicExecutor.SetLogicToExecute(m_currentState);
         }
     }
