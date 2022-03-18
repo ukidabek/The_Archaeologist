@@ -15,7 +15,7 @@ namespace Logic.States
             m_lateUpdateLogic = new List<IOnLateUpdateLogic>();
         }
 
-        public override void SetLogicToExecute(State state)
+        public override void SetLogicToExecute(IState state)
         {
             var logic = state.Logic;
             m_updateLogic = logic.OfType<IOnUpdateLogic>();

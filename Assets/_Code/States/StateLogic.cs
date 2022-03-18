@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Logic.States
 {
-    public abstract class StateLogic : MonoBehaviour
+    public abstract class StateLogic : MonoBehaviour, IStateLogic
     {
         public virtual void Activate() {}
         public virtual void Deactivate() {}
