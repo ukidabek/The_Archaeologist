@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Logic.States
 {
-    public class SubStateMachine : StateLogic, IStateMachine, IOnUpdateLogic, IOnFixUpdateLogic, IOnLateUpdateLogic
+    public class SubStateMachine : StateLogic, IStateMachine, IOnUpdateLogic, IOnFixUpdateLogic, IOnLateUpdateLogic, IStateLogicExecutor
     {
         [SerializeField] private State _currentState = null;
         public IState CurrentState => _currentState;
@@ -12,22 +12,22 @@ namespace Logic.States
         private IEnumerable<IOnUpdateLogic> _currentStateOnUpdateLogic = null;
         private IEnumerable<IOnFixUpdateLogic> _currentStateOnFixUpdateLogic = null;
         private IEnumerable<IOnLateUpdateLogic> _currentStateOnLateUpdateLogic = null;
-      
-        private IEnumerable<T> Cast<T>(IState state) => state.Logic.OfType<T>();
-        
-        public void EnterState(IState statToEnter)
+
+        private StateMachine _stateMachine;
+
+        private void Awake()
         {
-            _currentState?.Exit();
-            if (statToEnter is State state)
-                _currentState = state;
-            
-            var logic = statToEnter.Logic;
-            _currentStateOnUpdateLogic = logic.OfType<IOnUpdateLogic>();
-            _currentStateOnFixUpdateLogic = logic.OfType<IOnFixUpdateLogic>();
-            _currentStateOnLateUpdateLogic = logic.OfType<IOnLateUpdateLogic>();
-            
-            _currentState?.Enter();
+            _stateMachine = new StateMachine(new[] {this});
+            _stateMachine.OnStateChange += StateMachineOnOnStateChange;
         }
+
+        private void StateMachineOnOnStateChange()
+        {
+            if (_stateMachine.CurrentState is State state)
+                _currentState = state;
+        }
+
+        public void EnterState(IState statToEnter) => _stateMachine.EnterState(statToEnter);
 
         public void OnUpdate(float deltaTime)
         {
@@ -45,6 +45,24 @@ namespace Logic.States
         {
             foreach (var onUpdateLogic in _currentStateOnLateUpdateLogic) 
                 onUpdateLogic.OnLateUpdate(deltaTime);
+        }
+
+        public bool Enabled
+        {
+            get => enabled;
+            set => enabled = value;
+        }
+        
+        public void ClearLogicToExecute()
+        {
+        }
+
+        public void SetLogicToExecute(IState state)
+        {
+            var logic = state.Logic;
+            _currentStateOnUpdateLogic = logic.OfType<IOnUpdateLogic>();
+            _currentStateOnFixUpdateLogic = logic.OfType<IOnFixUpdateLogic>();
+            _currentStateOnLateUpdateLogic = logic.OfType<IOnLateUpdateLogic>();
         }
     }
 }
