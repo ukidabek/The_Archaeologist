@@ -1,26 +1,29 @@
 using UnityEngine;
 
-public class TransformFollower : MonoBehaviour
+namespace Weapons
 {
-   [SerializeField] private Transform _sourceTransform = null;
-   public Transform SourceTransform
+   public class TransformFollower : MonoBehaviour
    {
-      get => _sourceTransform;
-      set
+      [SerializeField] private Transform _sourceTransform = null;
+      public Transform SourceTransform
       {
-         _sourceTransform = value;
-         enabled = _sourceTransform != null;
+         get => _sourceTransform;
+         set
+         {
+            _sourceTransform = value;
+            enabled = _sourceTransform != null;
+         }
       }
-   }
 
-   private void Awake()
-   {
-      enabled = false;
-   }
+      private void Awake()
+      {
+         enabled = false;
+      }
 
-   private void Update()
-   {
-      transform.position = _sourceTransform.position;
-      transform.rotation = _sourceTransform.rotation;
+      private void Update()
+      {
+         transform.position = _sourceTransform.position;
+         transform.rotation = _sourceTransform.rotation;
+      }
    }
 }

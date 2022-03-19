@@ -18,14 +18,16 @@ namespace Weapons
             return _requirements.Length == result.Count();
         }
 
-        public void TakeWeapon(Transform toolTransform)
+        public Weapon TakeWeapon(Transform toolTransform)
         {
             ReParentWeapon(toolTransform);
+            return StoredWeapon;
         }
 
-        public void PutOffWeapon()
+        public Weapon PutOffWeapon()
         {
             ReParentWeapon(transform);
+            return StoredWeapon;
         }
 
         public void Equip(Weapon weapon)

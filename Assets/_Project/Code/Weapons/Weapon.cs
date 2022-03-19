@@ -1,31 +1,43 @@
-using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Index = Utilities.General.Index;
 
 namespace Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        [Serializable]
-        public class HandSpot
-        {
-            [SerializeField] private HumanBodyBones _humanBone = HumanBodyBones.LeftHand;
-            public HumanBodyBones HumanBone => _humanBone;
-
-            [SerializeField] private Transform _slotTransform = null;
-            public Transform SlotTransform => _slotTransform;
-        }
-
         [SerializeField] private HandSpot[] _handSpots = null;
-
         public HandSpot[] HandSpots => _handSpots;
 
         [SerializeField] private WeaponDescriptor[] _descriptors;
         public WeaponDescriptor[] Descriptors => _descriptors;
 
-        public void Use()
-        {
+        [SerializeField] private WeaponLogic[] _weaponLogics = null;
 
-           
+        private IEnumerable<WeaponAtomLogicBase> _weaponAtomLogicList = null;
+
+        private Index _index = null;
+        
+        private void Awake()
+        {
+            _index = new Index(_weaponLogics);
+
+            _weaponAtomLogicList = _weaponLogics.SelectMany(logic => logic.WeaponAtomLogic);
         }
+        
+        public void OnEquip(GameObject user)
+        {
+            foreach (var weaponLogic in _weaponLogics) 
+                weaponLogic.SetUser(user);
+        }
+        
+        public bool Use(GameObject target = null) => _weaponLogics[_index].Perform();
+
+        public void OnUnequip(GameObject user)
+        {
+        }
+
+        public T GetWeaponAtomicLogic<T>() => _weaponAtomLogicList.OfType<T>().First();
     }
 }

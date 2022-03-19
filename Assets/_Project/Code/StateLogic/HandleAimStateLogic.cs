@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Code.StateLogic
 {
-    public class HandleAimStateLogic : SwitchStateLogic
+    public class HandleAimStateLogic : SwitchStateCondition
     {
         [SerializeField] protected StarterAssetsInputs _input = null;
         [SerializeField] private bool _aimStatus = true;
-        protected override bool Condition => _aimStatus == _input.aim;
+        public override bool Condition => _aimStatus == _input.aim;
     }
 }

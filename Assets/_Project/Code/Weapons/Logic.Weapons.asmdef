@@ -2,7 +2,9 @@
     "name": "Logic.Weapons",
     "rootNamespace": "",
     "references": [
-        "GUID:7f7d1af65c2641843945d409d28f2e20"
+        "GUID:7f7d1af65c2641843945d409d28f2e20",
+        "GUID:4acc7160c80847e48b157260c1e4510a",
+        "GUID:039b286050ff95e4fb8e985fed8cddd8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
