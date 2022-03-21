@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using Weapons;
 
 namespace Code.StateLogic
@@ -10,9 +11,12 @@ namespace Code.StateLogic
         public override void Activate()
         {
             var currentWeapon = _weaponManager.CurrentWeapon;
-
             var clip = currentWeapon.GetWeaponAtomicLogic<IClip>();
-            clip?.Reload();
+
+            var storage = _weaponManager.AmmunitionStorages.First(
+                storage => storage.AmmunitionType == clip.AmmunitionType);
+            
+            storage.Retrieve(clip);
         }
     }
 }

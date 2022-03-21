@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Logic.States
@@ -12,7 +13,7 @@ namespace Logic.States
 
         private void Awake()
         {
-            _stateMachine = new StateMachine(m_logicExecutor);
+            _stateMachine = new StateMachine(m_logicExecutor, Array.Empty<IStateTransition>());
             _stateMachine.OnStateChange += OnStateChange;
         }
 

@@ -1,21 +1,41 @@
-﻿using Logic.States;
+﻿using System;
+using System.Collections;
+using Logic.States;
 using UnityEngine;
+using Utilities.General;
 
 namespace Code.StateLogic
 {
     public class AnimatorInStateCondition : SwitchStateCondition
     {
         [SerializeField] private Animator _animator = null;
+        [SerializeField] private AnimatorParameterDefinition _isReloadingParameterDefinition = null;
         [SerializeField] private int _layerIndex = 0;
-        [SerializeField] private string _stateName = null;
+        [SerializeField] private string _name = "";
 
-        public override bool Condition
+        private WaitUntil _waitUntilReloadingIsStarted;
+        private WaitUntil _waitUntilReloadingIsEnded;
+        private bool _status = false;
+
+        private void Awake()
         {
-            get
-            {
-                var currentStateInfo = _animator.GetCurrentAnimatorStateInfo(_layerIndex);
-                return !currentStateInfo.IsName(_stateName);
-            }
+            _waitUntilReloadingIsStarted = new WaitUntil(() => _isReloadingParameterDefinition.GetBool(_animator));
+            _waitUntilReloadingIsEnded = new WaitUntil(() => !_isReloadingParameterDefinition.GetBool(_animator));
+
         }
+
+        public override void Activate()
+        {
+            _status = false;
+            StartCoroutine(X());
+        }
+
+        IEnumerator X()
+        {
+            yield return _waitUntilReloadingIsStarted;
+            yield return _waitUntilReloadingIsEnded;
+            _status = true;
+        }
+        public override bool Condition => _status;
     }
 }

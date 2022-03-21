@@ -1,26 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace Logic.States
 {
-    public interface ISwitchStateCondition
-    {
-        bool Condition { get; }
-        void Activate();
-        void Deactivate();
-    }
-    
-    public abstract class SwitchStateCondition : MonoBehaviour, ISwitchStateCondition
-    {
-        public abstract bool Condition { get; }
-        public virtual void Activate() {}
-        public virtual void Deactivate() {}
-    }
-    
     public class SwitchStateLogic : StateLogic, IOnUpdateLogic
     {
         private enum ConditionMode
@@ -48,7 +32,7 @@ namespace Logic.States
                     case ConditionMode.All:
                         return _stateConditions.All(condition => condition.Condition);
                     case ConditionMode.Any:
-                         return _stateConditions.Any(condition => condition.Condition);
+                        return _stateConditions.Any(condition => condition.Condition);
                     default:
                         return false;
                 }

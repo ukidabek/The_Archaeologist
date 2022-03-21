@@ -8,19 +8,24 @@ namespace Logic.States
         public event Action OnStateChange; 
         
         private readonly IEnumerable<IStateLogicExecutor> _stateLogicExecutor = null;
+        private readonly IEnumerable<IStateTransition> _transitions = null;
         public IState CurrentState { get; private set; }
 
-        public StateMachine(IEnumerable<IStateLogicExecutor> stateLogicExecutor)
+        public StateMachine(IEnumerable<IStateLogicExecutor> stateLogicExecutor, IEnumerable<IStateTransition> transitions)
         {
             _stateLogicExecutor = stateLogicExecutor;
+            _transitions = transitions;
         }
 
         public void EnterState(IState statToEnter)
         {
             if(CurrentState == statToEnter) return;
-            
-            foreach (var stateLogicExecutor in _stateLogicExecutor) 
-                stateLogicExecutor.ClearLogicToExecute();
+
+            foreach (var transition in _transitions)
+            {
+                transition.Cancel();
+                transition.Perform(CurrentState, statToEnter);
+            }
 
             CurrentState?.Exit();
             CurrentState = statToEnter;

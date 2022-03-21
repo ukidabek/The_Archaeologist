@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 904985174}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114515652
 MonoBehaviour:
@@ -108,8 +108,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6367379480388044510}
-  m_RootOrder: 7
+  m_Father: {fileID: 904985174}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &122151033
 MonoBehaviour:
@@ -267,7 +267,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 904985174}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &602402685
 MonoBehaviour:
@@ -443,6 +443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 122151032}
   - {fileID: 114515650}
   - {fileID: 1908788272}
   - {fileID: 602402684}
@@ -467,6 +468,7 @@ MonoBehaviour:
   - {fileID: 114515652}
   - {fileID: 1908788274}
   - {fileID: 602402685}
+  - {fileID: 122151033}
 --- !u!1 &1072025840
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +502,7 @@ Transform:
   - {fileID: 724220606}
   - {fileID: 476830255}
   m_Father: {fileID: 904985174}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1072025843
 MonoBehaviour:
@@ -684,7 +686,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 904985174}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1908788274
 MonoBehaviour:
@@ -1889,7 +1891,7 @@ GameObject:
   - component: {fileID: 6367379479977776271}
   - component: {fileID: 6367379479977776270}
   m_Layer: 0
-  m_Name: -----[Rig]-----
+  m_Name: '[Rig]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2421,7 +2423,6 @@ Transform:
   - {fileID: 6367379480549961530}
   - {fileID: 7907917768230647072}
   - {fileID: 1828120887}
-  - {fileID: 122151032}
   m_Father: {fileID: 6367379479544564736}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2445,7 +2446,6 @@ MonoBehaviour:
   - {fileID: 6367379480549961531}
   - {fileID: 1863416847}
   - {fileID: 1828120889}
-  - {fileID: 122151033}
 --- !u!1 &6367379480427054730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,6 +3604,24 @@ MonoBehaviour:
     _transformFollower: {fileID: 6367379479783108019}
   _weaponParentSpot: {fileID: 6367379479181366111}
   _user: {fileID: 7282719962800121260}
+  _currentWeapon: {fileID: 0}
+  _ammunitionStorages:
+  - {fileID: 11400000, guid: e1783e422e1e1b748b6f1e80cad90ec6, type: 2}
+  OnWeaponSwitch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 3ade344a36827b940a8df0e1cef4e217, type: 2}
+        m_TargetAssemblyTypeName: Logic.Events.EventBase`1[[Weapons.Weapon, Logic.Weapons
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &716358630234066778
 MonoBehaviour:
   m_ObjectHideFlags: 0

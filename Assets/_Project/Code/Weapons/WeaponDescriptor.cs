@@ -2,7 +2,7 @@
 
 namespace Weapons
 {
-    [CreateAssetMenu(menuName = "Weapons/WeaponType", fileName = "WeaponType")]
+    [CreateAssetMenu(menuName = "Weapons/WeaponDescriptor", fileName = "WeaponDescriptor")]
     public class WeaponDescriptor : ScriptableObject
     {
     }

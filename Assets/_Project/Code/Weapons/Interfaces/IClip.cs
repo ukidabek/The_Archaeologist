@@ -6,7 +6,8 @@ namespace Weapons
     {
        int Counter { get; }
        int Count { get; }
-       event Action OnClipEmpty;
-       void Reload();
+       void Reload(int amount = -1);
+       WeaponDescriptor AmmunitionType { get; }
+       event Action<int> OnCounterChange;
     }
 }

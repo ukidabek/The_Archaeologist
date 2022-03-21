@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _count: 30
   _counter: 0
+  _ammunitionType: {fileID: 11400000, guid: 84cae414f6cdb6049a3831cb6c2b2377, type: 2}
 --- !u!1 &2129637132
 GameObject:
   m_ObjectHideFlags: 0

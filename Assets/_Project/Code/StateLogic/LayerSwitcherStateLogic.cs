@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using Logic.States;
 using UnityEngine;
 
 namespace Code.StateLogic
@@ -27,7 +27,8 @@ namespace Code.StateLogic
 
         public override void Activate()
         {
-            _coroutineManager.Run(SetLayerWeight(
+            _coroutineManager.Run(StateLogicHelpers.SetLayerWeight(
+                _animator,
                 _layerIndex, 
                 _settings.ActivateWeight, 
                 _settings.WeightTransitionSpeed,
@@ -36,23 +37,14 @@ namespace Code.StateLogic
 
         public override void Deactivate()
         {
-            _coroutineManager.Run(SetLayerWeight(
+            _coroutineManager.Run(StateLogicHelpers.SetLayerWeight(
+                _animator,
                 _layerIndex, 
                 _settings.DeactivateWeight, 
                 _settings.WeightTransitionSpeed,
                 _settings.DeactivationDelay));
         }
 
-        private IEnumerator SetLayerWeight(int index, float target, float speed, float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            var current = _animator.GetLayerWeight(index);
-            while (current != target)
-            {
-                current = Mathf.MoveTowards(current, target, Time.deltaTime * speed);
-                _animator.SetLayerWeight(index, current);
-                yield return null;
-            }
-        }
+        
     }
 }

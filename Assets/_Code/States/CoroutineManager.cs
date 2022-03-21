@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Code.StateLogic
+namespace Logic.States
 {
     public class CoroutineManager
     {
@@ -20,7 +20,7 @@ namespace Code.StateLogic
             _coroutineRunnerMonoBehaviour.StartCoroutine(_coroutine);
         }
 
-        private void Stop()
+        public void Stop()
         {
             if (_coroutine != null)
                 _coroutineRunnerMonoBehaviour.StopCoroutine(_coroutine);

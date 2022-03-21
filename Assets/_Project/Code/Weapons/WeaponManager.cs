@@ -1,12 +1,19 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Index = Utilities.General.Index;
 
 namespace Weapons
 {
     public class WeaponManager : MonoBehaviour
     {
+        [Serializable]
+        public class OnWeaponSwitchCallback : UnityEvent<Weapon>
+        {
+        }
+        
+        
         private Index _activeSlotIndex = null;
         [SerializeField] private WeaponSlot[] _slots = null;
         [SerializeField] private HandSlotBinding[] _bindings = null;
@@ -14,18 +21,25 @@ namespace Weapons
         [Space]
         [SerializeField] private Transform _weaponParentSpot = null;
         [SerializeField] private GameObject _user = null;
+
+        [SerializeField] private Weapon _currentWeapon = null;
         public Weapon CurrentWeapon
         {
-            get
+            get => _currentWeapon;
+            private set
             {
-                var slot = _slots[_activeSlotIndex];
-                if(slot == null || slot.Full == false) return null;
-                
-                return slot.StoredWeapon;
+                if (_currentWeapon != value)
+                {
+                    _currentWeapon = value;
+                    OnWeaponSwitch.Invoke(value);
+                }
             }
         }
 
-        public event Action<Weapon> OnWeaponSwitch;  
+        [SerializeField] private AmmunitionStorage[] _ammunitionStorages = null;
+        public AmmunitionStorage[] AmmunitionStorages => _ammunitionStorages;
+
+        public OnWeaponSwitchCallback OnWeaponSwitch;  
 
         private void Awake()
         {
@@ -51,8 +65,8 @@ namespace Weapons
                 var binding = _bindings.FirstOrDefault(slotBinding => slotBinding.HumanBone == handSlot.HumanBone);
                 binding.SetTransform(handSlot.SlotTransform);
             }
-            
-            OnWeaponSwitch?.Invoke(weapon);
+
+            CurrentWeapon = weapon;
         }
 
         public void Unequip()
@@ -65,6 +79,8 @@ namespace Weapons
             
             var weapon = slot.PutOffWeapon();
             weapon.OnUnequip(_user);
+            
+            CurrentWeapon = null;
         }
 
         public bool UseWeapon()

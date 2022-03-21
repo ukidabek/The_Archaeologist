@@ -10,9 +10,9 @@ namespace Weapons
         [SerializeField] private HandSpot[] _handSpots = null;
         public HandSpot[] HandSpots => _handSpots;
 
-        [SerializeField] private WeaponDescriptor[] _descriptors;
+        [SerializeField] private WeaponDescriptor[] _descriptors = null;
         public WeaponDescriptor[] Descriptors => _descriptors;
-
+        
         [SerializeField] private WeaponLogic[] _weaponLogics = null;
 
         private IEnumerable<WeaponAtomLogicBase> _weaponAtomLogicList = null;
