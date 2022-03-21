@@ -10,8 +10,6 @@ namespace Code.StateLogic
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 		public GameObject CinemachineCameraTarget;
-
-		[SerializeField] private CinemachineVirtualCamera _virtualCamera = null;
 		
 		[Tooltip("How far in degrees can you move the camera up")]
 		public float TopClamp = 70.0f;
@@ -29,16 +27,6 @@ namespace Code.StateLogic
 		[SerializeField] private StarterAssetsInputs _input;
 		
 		private const float _threshold = 0.01f;
-
-		public override void Activate()
-		{
-			_virtualCamera.enabled = true;
-		}
-
-		public override void Deactivate()
-		{
-			_virtualCamera.enabled = false;
-		}
 
 		public void OnLateUpdate(float deltaTime)
 		{

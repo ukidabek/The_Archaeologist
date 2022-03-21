@@ -6,24 +6,22 @@ using UnityEngine.Events;
 
 namespace Weapons
 {
-    [Serializable] public class OnHitCallback : UnityEvent<float, GameObject> { }
+    [Serializable] public class OnHitCallback : UnityEvent<Damage, GameObject> { }
 
     public class HitInvoker : MonoBehaviour
     {
-        [SerializeField] private  float _damage = 10;
-        public float Damage { get => _damage; set => _damage = value; }
+        [SerializeField] private  Damage _damage;
+        public Damage Damage { get => _damage; set => _damage = value; }
 
         [Space]
         public OnHitCallback OnHit = new OnHitCallback();
 
         private void OnTriggerEnter(Collider other)
         {
-            IDamageable hit = other.gameObject.GetComponent<IDamageable>();
-            if (hit != null)
-            {
-                hit.DealDamage(_damage);
-                OnHit.Invoke(_damage, other.gameObject);
-            }
+            var hit = other.gameObject.GetComponent<IDamageable>();
+            if (hit == null) return;
+            hit.DealDamage(_damage);
+            OnHit.Invoke(_damage, other.gameObject);
         }
     }
 }

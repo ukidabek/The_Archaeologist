@@ -13,7 +13,7 @@ namespace Logic.States
 
         private void Awake()
         {
-            _stateMachine = new StateMachine(m_logicExecutor, Array.Empty<IStateTransition>());
+            _stateMachine = new StateMachine(m_logicExecutor, Array.Empty<IStateTransitionLogic>());
             _stateMachine.OnStateChange += OnStateChange;
         }
 

@@ -13,8 +13,8 @@ namespace Logic.States
         }
 
         [SerializeField] private ConditionMode _mode = ConditionMode.All;
-        [SerializeField] private GameObject _stateMachineObject = null;
-
+        [SerializeField] private Object _stateMachineInstance = null;
+        
         private IStateMachine _stateMachine = null;
         
         [SerializeField] private State _stateToEnter = null;
@@ -41,7 +41,7 @@ namespace Logic.States
 
         private void Awake()
         {
-            _stateMachine = _stateMachineObject.GetComponent<IStateMachine>();
+            _stateMachine = _stateMachineInstance as IStateMachine;
             _stateConditions = _conditionsObjects.OfType<ISwitchStateCondition>();
         }
 

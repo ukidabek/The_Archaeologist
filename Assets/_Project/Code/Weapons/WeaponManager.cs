@@ -9,10 +9,7 @@ namespace Weapons
     public class WeaponManager : MonoBehaviour
     {
         [Serializable]
-        public class OnWeaponSwitchCallback : UnityEvent<Weapon>
-        {
-        }
-        
+        public class OnWeaponSwitchCallback : UnityEvent<Weapon> {}
         
         private Index _activeSlotIndex = null;
         [SerializeField] private WeaponSlot[] _slots = null;
@@ -28,11 +25,9 @@ namespace Weapons
             get => _currentWeapon;
             private set
             {
-                if (_currentWeapon != value)
-                {
-                    _currentWeapon = value;
-                    OnWeaponSwitch.Invoke(value);
-                }
+                if (_currentWeapon == value) return;
+                _currentWeapon = value;
+                OnWeaponSwitch.Invoke(value);
             }
         }
 
@@ -83,11 +78,6 @@ namespace Weapons
             CurrentWeapon = null;
         }
 
-        public bool UseWeapon()
-        {
-            var slot = _slots[_activeSlotIndex];
-            if(slot == null || slot.Full == false) return false;
-            return slot.StoredWeapon.Use();
-        }
+        public bool UseWeapon() => CurrentWeapon != null && CurrentWeapon.Use();
     }
 }

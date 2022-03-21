@@ -13,12 +13,20 @@ namespace Logic.States
             _coroutineRunnerMonoBehaviour = coroutineRunnerMonoBehaviour;
         }
 
+        public CoroutineManager(MonoBehaviour coroutineRunnerMonoBehaviour, IEnumerator coroutine)
+        {
+            _coroutineRunnerMonoBehaviour = coroutineRunnerMonoBehaviour;
+            _coroutine = coroutine;
+        }
+
         private void ManageCoroutine(IEnumerator enumerator)
         {
             Stop();
-            _coroutine = enumerator;
+            SetCoroutine(enumerator);
             _coroutineRunnerMonoBehaviour.StartCoroutine(_coroutine);
         }
+
+        public void SetCoroutine(IEnumerator enumerator) => _coroutine = enumerator;
 
         public void Stop()
         {
@@ -31,7 +39,7 @@ namespace Logic.States
             ManageCoroutine(enumerator);
         }
         
-        public void ReRun()
+        public void Run()
         {
             if (_coroutine != null)
                 ManageCoroutine(_coroutine);

@@ -1,6 +1,6 @@
 ﻿namespace Logic.States
 {
-    public interface IStateTransition
+    public interface IStateTransitionLogic
     {
         void Cancel();
         void Perform(IState from, IState to);

@@ -24,6 +24,7 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 		public bool fire;
+		public bool reload;
 #endif
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -68,6 +69,16 @@ namespace StarterAssets
 		public void OnInteract(InputValue value)
 		{
 			InteractInput(value.isPressed);
+		}
+
+		public void OnReload(InputValue value)
+		{
+			InteractReload(value.isPressed);
+		}
+
+		private void InteractReload(bool newReloadValue)
+		{
+			reload = newReloadValue;
 		}
 
 #else

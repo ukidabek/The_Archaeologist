@@ -22,7 +22,6 @@ namespace Weapons
         private void Awake()
         {
             _index = new Index(_weaponLogics);
-
             _weaponAtomLogicList = _weaponLogics.SelectMany(logic => logic.WeaponAtomLogic);
         }
         

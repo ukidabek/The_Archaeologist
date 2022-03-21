@@ -8,10 +8,10 @@ namespace Logic.States
         public event Action OnStateChange; 
         
         private readonly IEnumerable<IStateLogicExecutor> _stateLogicExecutor = null;
-        private readonly IEnumerable<IStateTransition> _transitions = null;
+        private readonly IEnumerable<IStateTransitionLogic> _transitions = null;
         public IState CurrentState { get; private set; }
 
-        public StateMachine(IEnumerable<IStateLogicExecutor> stateLogicExecutor, IEnumerable<IStateTransition> transitions)
+        public StateMachine(IEnumerable<IStateLogicExecutor> stateLogicExecutor, IEnumerable<IStateTransitionLogic> transitions)
         {
             _stateLogicExecutor = stateLogicExecutor;
             _transitions = transitions;

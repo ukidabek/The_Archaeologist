@@ -6,10 +6,10 @@ using Object = UnityEngine.Object;
 
 namespace Logic.ObjectMap
 {
-    public class ObjectDictionary : MonoBehaviour
+    public class ObjectDictionary : MonoBehaviour, IObjectDictionary
     {
         [Serializable]
-        public class KeyValuePair
+        public struct KeyValuePair
         {
             [SerializeField] private Key _key;
             public Key Key => _key;
@@ -20,7 +20,7 @@ namespace Logic.ObjectMap
 
         [SerializeField] private KeyValuePair[] _keyValuePair = null;
         
-        private Dictionary<Key, Object> _dictionary = null;
+        protected Dictionary<Key, Object> _dictionary = null;
 
         private void Awake()
         {
