@@ -11,7 +11,7 @@ namespace Weapons
         [Serializable]
         public class OnWeaponSwitchCallback : UnityEvent<Weapon> {}
         
-        private Index _activeSlotIndex = null;
+        [SerializeField] private Index _activeSlotIndex = null;
         [SerializeField] private WeaponSlot[] _slots = null;
         [SerializeField] private HandSlotBinding[] _bindings = null;
         

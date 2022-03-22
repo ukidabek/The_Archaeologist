@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Utilities.General
 {
-    [Serializable] public class Index
+    [Serializable] 
+    public class Index
     {
         [SerializeField] private int _current = 0;
         public int Current

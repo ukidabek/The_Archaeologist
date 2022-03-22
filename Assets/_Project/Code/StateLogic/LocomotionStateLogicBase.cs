@@ -129,12 +129,10 @@ namespace Code.StateLogic
             _controller.Move(TargetDirection * (Speed * deltaTime) + _moveVector * deltaTime);
         }
 
-        protected virtual float CalculateSpeed()
-        {
+        protected virtual float CalculateSpeed() =>
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            return _input.sprint ? SprintSpeed : MoveSpeed;
-        }
-        
+            _input.sprint ? SprintSpeed : MoveSpeed;
+
         private void JumpAndGravity(float deltaTime)
         {
             if (Grounded)

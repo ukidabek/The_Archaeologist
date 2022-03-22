@@ -19,13 +19,12 @@ namespace Weapons
 
         [SerializeField] private Key _userAnimatorKey = null;
         [SerializeField] private AnimatorParameterDefinition _userAnimatorParameter = null;
-
-        [SerializeField] private Animator _userAnimator = null;
+        private Animator _animator = null;
 
         public override void SetUser(GameObject _user)
         {
             var dictionary = _user.GetComponent<ObjectDictionary>();
-            _userAnimator = dictionary.TryGetValue<Animator>(_userAnimatorKey);
+            _animator = dictionary.TryGetValue<Animator>(_userAnimatorKey);
         }
 
         public void Perform()
@@ -37,7 +36,7 @@ namespace Weapons
         public void Reload(int amount = -1)
         {
             _counter = amount < 0 ? _count : amount;
-            _userAnimatorParameter.SetTrigger(_userAnimator);
+            _userAnimatorParameter.SetTrigger(_animator);
             OnCounterChange?.Invoke(_counter);
         }
 
