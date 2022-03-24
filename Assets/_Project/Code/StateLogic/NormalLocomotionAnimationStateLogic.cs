@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utilities.General;
 
 namespace Code.StateLogic
 {
@@ -6,23 +7,15 @@ namespace Code.StateLogic
     {
         [SerializeField] private AnimationCurve m_speedToAxis = new AnimationCurve();
 
-        [SerializeField] private string _animYNameSpeed = "Y";
-        private int _animIDSpeed;
-
-        protected override void AssignAnimationIDs()
-        {
-            base.AssignAnimationIDs();
-            _animIDSpeed = Animator.StringToHash(_animYNameSpeed);
-        }
-
+        [SerializeField] private AnimatorParameterDefinition _ySpeedParameter = null;
+        
         public override void OnUpdate(float deltaTime)
         {
             base.OnUpdate(deltaTime);
             var targetSpeed = _locomotionStateLogic.Speed;
 
             _animationBlend = GetAnimationAxisValue(_animationBlend, targetSpeed, m_speedToAxis, deltaTime);
-
-            _animator.SetFloat(_animIDSpeed, _animationBlend);
+            _ySpeedParameter.SetFloat(_animator, _animationBlend);
         }
     }
 }

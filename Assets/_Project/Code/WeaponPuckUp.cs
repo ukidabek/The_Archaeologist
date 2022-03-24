@@ -19,8 +19,7 @@ namespace PickUps
             if (userGameObject == null) return;
             
             var weaponManager = userGameObject.GetComponent<WeaponManager>();
-            var slot = weaponManager.GetSlotForWeapon(_weapon);
-            slot?.Equip(_weapon);
+            weaponManager.EquipToSlot(_weapon);
 
             _collider.enabled = false;
             enabled = false;

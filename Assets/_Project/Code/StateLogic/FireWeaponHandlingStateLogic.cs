@@ -29,5 +29,6 @@ namespace Code.StateLogic
         {
             _deactivated = false;
         }
+        
     }
 }

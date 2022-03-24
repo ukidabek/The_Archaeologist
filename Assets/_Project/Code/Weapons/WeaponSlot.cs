@@ -21,13 +21,13 @@ namespace Weapons
         public Weapon TakeWeapon(Transform toolTransform)
         {
             ReParentWeapon(toolTransform);
-            return StoredWeapon;
+            return _storedWeapon;
         }
 
         public Weapon PutOffWeapon()
         {
             ReParentWeapon(transform);
-            return StoredWeapon;
+            return _storedWeapon;
         }
 
         public void Equip(Weapon weapon)
@@ -38,6 +38,7 @@ namespace Weapons
 
         private void ReParentWeapon(Transform parent)
         {
+            if(_storedWeapon == null) return;
             var weaponTransform = _storedWeapon.transform;
             weaponTransform.SetParent(parent);
             weaponTransform.localPosition = Vector3.zero;

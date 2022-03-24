@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,18 +7,20 @@ namespace Weapons
 {
     public class WeaponManager : MonoBehaviour
     {
-        [Serializable]
-        public class OnWeaponSwitchCallback : UnityEvent<Weapon> {}
-        
         [SerializeField] private Index _activeSlotIndex = null;
         [SerializeField] private WeaponSlot[] _slots = null;
-        [SerializeField] private HandSlotBinding[] _bindings = null;
+        public WeaponSlot[] Slots => _slots;
         
+        [SerializeField] private HandSlotBinding[] _bindings = null;
+
+
         [Space]
         [SerializeField] private Transform _weaponParentSpot = null;
+
         [SerializeField] private GameObject _user = null;
 
         [SerializeField] private Weapon _currentWeapon = null;
+
         public Weapon CurrentWeapon
         {
             get => _currentWeapon;
@@ -32,16 +33,19 @@ namespace Weapons
         }
 
         [SerializeField] private AmmunitionStorage[] _ammunitionStorages = null;
+
         public AmmunitionStorage[] AmmunitionStorages => _ammunitionStorages;
 
-        public OnWeaponSwitchCallback OnWeaponSwitch;  
-
+        [Header("Events")]
+        public UnityEvent<Weapon> OnWeaponSwitch = new UnityEvent<Weapon>();
+        public UnityEvent<Weapon> OnWeaponEquippedToSlot = new UnityEvent<Weapon>();
+        
         private void Awake()
         {
             _activeSlotIndex = new Index(_slots);
         }
 
-        public WeaponSlot GetSlotForWeapon(Weapon weapon)
+        private WeaponSlot GetSlotForWeapon(Weapon weapon)
         {
             return _slots.FirstOrDefault(slot => slot.ValidateRequirement(weapon.Descriptors));
         }
@@ -62,6 +66,14 @@ namespace Weapons
             }
 
             CurrentWeapon = weapon;
+        }
+
+        public void EquipToSlot(Weapon weapon)
+        {
+            var slot = GetSlotForWeapon(weapon);
+            if(slot == null) return;
+            slot.Equip(weapon);
+            OnWeaponEquippedToSlot.Invoke(weapon);
         }
 
         public void Unequip()
