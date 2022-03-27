@@ -61,7 +61,7 @@
                 },
                 {
                     "name": "Pull",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "9abcca9d-4b1b-4fc0-ab1a-53271338a1f1",
                     "expectedControlType": "Button",
                     "processors": "",
