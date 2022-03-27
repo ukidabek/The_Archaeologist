@@ -22,6 +22,10 @@ namespace Logic.States
             _stateMachine.OnStateChange += StateMachineOnOnStateChange;
         }
 
+        public override void Activate() => CurrentState?.Enter();
+
+        public override void Deactivate() => CurrentState?.Exit();
+
         private void StateMachineOnOnStateChange()
         {
             if (_stateMachine.CurrentState is State state)

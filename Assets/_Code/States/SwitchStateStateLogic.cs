@@ -5,21 +5,18 @@ using Object = UnityEngine.Object;
 
 namespace Logic.States
 {
-    public class SwitchStateLogic : StateLogic, IOnUpdateLogic
+    
+    public class SwitchStateStateLogic : StateLogic, IOnUpdateLogic
     {
-        private enum ConditionMode
-        {
-            All, Any
-        }
+        private enum ConditionMode { All, Any }
 
+        private StateSwitcher _stateSwitcher = null;
+        
         [SerializeField] private ConditionMode _mode = ConditionMode.All;
         [SerializeField] private Object _stateMachineInstance = null;
-        
-        private IStateMachine _stateMachine = null;
-        
-        [SerializeField] private State _stateToEnter = null;
-        private IState StateToEnter => _stateToEnter;
 
+        [SerializeField] private State _stateToEnter = null;
+        
         [SerializeField] private Object[] _conditionsObjects = null;
         private IEnumerable<ISwitchStateCondition> _stateConditions = null;
 
@@ -27,21 +24,18 @@ namespace Logic.States
         {
             get
             {
-                switch (_mode)
+                return _mode switch
                 {
-                    case ConditionMode.All:
-                        return _stateConditions.All(condition => condition.Condition);
-                    case ConditionMode.Any:
-                        return _stateConditions.Any(condition => condition.Condition);
-                    default:
-                        return false;
-                }
+                    ConditionMode.All => _stateConditions.All(condition => condition.Condition),
+                    ConditionMode.Any => _stateConditions.Any(condition => condition.Condition),
+                    _ => false
+                };
             }
         }
 
         private void Awake()
         {
-            _stateMachine = _stateMachineInstance as IStateMachine;
+            _stateSwitcher = new StateSwitcher(_stateMachineInstance, _stateToEnter);
             _stateConditions = _conditionsObjects.OfType<ISwitchStateCondition>();
         }
 
@@ -59,8 +53,8 @@ namespace Logic.States
 
         public virtual void OnUpdate(float deltaTime)
         {
-            if (Condition && _stateMachine.CurrentState != StateToEnter) 
-                _stateMachine.EnterState(StateToEnter);
+            if (Condition) 
+                _stateSwitcher.Switch();
         }
     }
 }
