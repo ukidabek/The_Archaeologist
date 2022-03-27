@@ -10,9 +10,9 @@ namespace Code.StateLogic
         [SerializeField] private bool _pullStatus = true;
         public override bool Condition => _pullStatus == _input.pull;
         
-        public override void Activate()
-        {
-            _input.pull = false;
-        }
+        // public override void Activate()
+        // {
+        //     _input.pull = false;
+        // }
     }
 }

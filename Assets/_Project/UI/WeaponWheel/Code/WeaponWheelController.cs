@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Utilities.UI;
 using Weapons;
 
@@ -14,18 +12,12 @@ namespace UI.WeaponWheel.Code
         [SerializeField] private float _radius = 1f;
 
         [SerializeField] private WeaponWheelSegment[] _buttons = null;
-
-        [SerializeField] private int _weaponIndex = 0;
+        
         protected override void Awake()
         {
             base.Awake();
             foreach (var weaponWheelSegment in _buttons)
-            {
-                weaponWheelSegment.OnPointerEnterCallback.AddListener(i =>
-                {
-                    _weaponIndex = i;
-                });        
-            }
+                weaponWheelSegment.OnPointerEnterCallback.AddListener(i => _managerModel.SelectedWeaponIndex = i);
         }
 
         private void OnEnable()
@@ -44,17 +36,6 @@ namespace UI.WeaponWheel.Code
 
                 currentSegment.Text = weaponSlot.StoredWeapon == null ? "Empty" : weaponSlot.StoredWeapon.name;
             }
-            //
-            // var ed = new PointerEventData(EventSystem.current)
-            // {
-            //     pointerEnter = _buttons[1].gameObject
-            // };
-            //
-            // foreach (var weaponWheelSegment in _buttons)
-            // {
-            //     weaponWheelSegment.OnPointerEnter(ed);
-            // }
-            //
         }
     }
 }

@@ -24,6 +24,11 @@ namespace Code.StateLogic
         public override void Deactivate()
         {
             _weaponManagerModel.ShowUI(false);
+
+            var manager = _weaponManagerModel.ManagerInstance;
+            var index = _weaponManagerModel.SelectedWeaponIndex;
+            manager.Equip(index);
+            
             Cursor.visible = _visibleStatus;
             Cursor.lockState = _lockState;
         }

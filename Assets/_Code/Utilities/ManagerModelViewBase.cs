@@ -7,7 +7,7 @@ namespace Utilities.UI
         where ManagerType : MonoBehaviour
         where ManagerModelType : ManagerModelBase<ManagerType>
     {
-        [SerializeField] private ManagerModelType _managerModel = null;
+        [SerializeField] protected ManagerModelType _managerModel = null;
 
         public ManagerType Manager => _managerModel.ManagerInstance;
 

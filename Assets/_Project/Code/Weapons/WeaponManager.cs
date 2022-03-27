@@ -49,6 +49,14 @@ namespace Weapons
         {
             return _slots.FirstOrDefault(slot => slot.ValidateRequirement(weapon.Descriptors));
         }
+
+        public void Equip(int index)
+        {
+            if(index == _activeSlotIndex) return;
+            Unequip();
+            _activeSlotIndex.Current = index;
+            Equip();
+        }
         
         public void Equip()
         {

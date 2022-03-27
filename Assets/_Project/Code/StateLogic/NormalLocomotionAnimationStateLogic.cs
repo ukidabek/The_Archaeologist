@@ -17,5 +17,11 @@ namespace Code.StateLogic
             _animationBlend = GetAnimationAxisValue(_animationBlend, targetSpeed, m_speedToAxis, deltaTime);
             _ySpeedParameter.SetFloat(_animator, _animationBlend);
         }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            _ySpeedParameter.SetFloat(_animator, 0);
+        }
     }
 }

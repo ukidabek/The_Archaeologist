@@ -14,6 +14,7 @@ namespace Weapons
 
         public bool ValidateRequirement(IEnumerable<WeaponDescriptor> weponDecriptors)
         {
+            if (_requirements.Length == 0) return false;
             var result= _requirements.Intersect(weponDecriptors);
             return _requirements.Length == result.Count();
         }
