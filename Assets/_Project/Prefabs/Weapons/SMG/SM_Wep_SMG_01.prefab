@@ -152,7 +152,6 @@ MonoBehaviour:
   _ammunitionType: {fileID: 11400000, guid: 84cae414f6cdb6049a3831cb6c2b2377, type: 2}
   _userAnimatorKey: {fileID: 11400000, guid: d536fecf50e68d04d8f4c78fdfb0baeb, type: 2}
   _userAnimatorParameter: {fileID: 11400000, guid: af45c61012d51cf4fbf6f00e00e63189, type: 2}
-  _userAnimator: {fileID: 0}
 --- !u!1 &2129637132
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +256,7 @@ GameObject:
   - component: {fileID: 456910144599014204}
   - component: {fileID: 456910144599014206}
   - component: {fileID: 7977946248150413553}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: SM_Wep_SMG_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +482,7 @@ MonoBehaviour:
   _origin: {fileID: 3604343451109624741}
   _maxDistance: Infinity
   _damage:
-    _amount: 0
+    _amount: 50
 --- !u!1 &6099383474025402171
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,13 +528,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8679245, g: 0.549926, b: 0.05322181, a: 1}
-  m_Intensity: 2.39
-  m_Range: 1
+  m_Intensity: 1
+  m_Range: 2.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -571,7 +570,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

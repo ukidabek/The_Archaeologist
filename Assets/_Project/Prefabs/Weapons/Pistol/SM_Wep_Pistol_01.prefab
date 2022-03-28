@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 617769987509342418}
   - component: {fileID: 7458273944250751362}
   - component: {fileID: 6784399492034248850}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Wep_Pistol_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
