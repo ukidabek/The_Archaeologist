@@ -12,6 +12,7 @@ namespace Logic.States
         private IEnumerable<IOnUpdateLogic> _currentStateOnUpdateLogic = null;
         private IEnumerable<IOnFixUpdateLogic> _currentStateOnFixUpdateLogic = null;
         private IEnumerable<IOnLateUpdateLogic> _currentStateOnLateUpdateLogic = null;
+        
         [SerializeField] private StateTransitionLogicBase[] _transition;
         
         private StateMachine _stateMachine;

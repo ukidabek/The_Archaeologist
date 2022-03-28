@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
-namespace Interactions
+namespace Logic.Interactions
 {
     public class InteractionManager
     {
         private readonly IInteractionSelector _interactionSelector = null;
         
         private readonly UnityEngine.Object _user = null;
-        private readonly List<IInteractable> _detectedInteractions = new List<IInteractable>();
 
         public InteractionManager(IInteractionSelector interactionSelector, UnityEngine.Object user)
         {
@@ -15,26 +14,19 @@ namespace Interactions
             _user = user;
         }
 
-        private void OnInteractionDetected(IInteractable interactable)
+        public void ManualInteract() => HandleInteraction(false);
+
+        private void HandleInteraction(bool auto)
         {
-            if(!_detectedInteractions.Contains(interactable))
-                _detectedInteractions.Add(interactable);
-            
-            _interactionSelector.Select(_detectedInteractions);
+            if (_interactionSelector.SelectedInteractions.Any())
+            {
+                var manualInteractions = _interactionSelector.SelectedInteractions
+                    .Where(interactable => interactable.Interactable && interactable.AutoInteraction == auto);
+                foreach (var detectedPickUp in manualInteractions)
+                    detectedPickUp.Interact(_user);
+            }
         }
 
-        private void OnInteractionLost(IInteractable interactable)
-        {
-            if(_detectedInteractions.Contains(interactable))
-                _detectedInteractions.Remove(interactable);
-            
-            _interactionSelector.Select(_detectedInteractions);
-        }
-
-        public void Interact()
-        {
-            foreach (var detectedPickUp in _interactionSelector.SelectedInteractions) 
-                detectedPickUp.Interact(_user);
-        }
+        public void AutoInteract() => HandleInteraction(true);
     }
 }

@@ -59,6 +59,8 @@ namespace Code.StateLogic
         private float _fallTimeoutDelta;
         private Vector3 _moveVector = Vector3.zero;
         private Vector3 _sharePosition = Vector3.zero;
+        private Vector3 _speedVector = Vector3.zero;
+        private Vector3 _inputDirection = Vector3.zero;
         private float _targetSpeed;
 
         public bool CanJump => _jumpTimeoutDelta <= 0.0f;
@@ -90,17 +92,18 @@ namespace Code.StateLogic
             if (_input.move == Vector2.zero) _targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
-            var currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            _speedVector.Set(_controller.velocity.x, 0.0f, _controller.velocity.z);
+            var _currentHorizontalSpeed = _speedVector.magnitude;
 
             var speedOffset = 0.1f;
             var inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
             // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < _targetSpeed - speedOffset || currentHorizontalSpeed > _targetSpeed + speedOffset)
+            if (_currentHorizontalSpeed < _targetSpeed - speedOffset || _currentHorizontalSpeed > _targetSpeed + speedOffset)
             {
                 // creates curved result rather than a linear one giving a more organic speed change
                 // note T in Lerp is clamped, so we don't need to clamp our speed
-                Speed = Mathf.Lerp(currentHorizontalSpeed, _targetSpeed * inputMagnitude, deltaTime * SpeedChangeRate);
+                Speed = Mathf.Lerp(_currentHorizontalSpeed, _targetSpeed * inputMagnitude, deltaTime * SpeedChangeRate);
 
                 // round speed to 3 decimal places
                 Speed = Mathf.Round(Speed * 1000f) / 1000f;
@@ -110,13 +113,14 @@ namespace Code.StateLogic
                 Speed = _targetSpeed;
             }
 			
-            var inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
+            _inputDirection.Set(_input.move.x, 0.0f, _input.move.y);
+            _inputDirection.Normalize();
+            
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
             if (_input.move != Vector2.zero)
             {
-                var atan2 = Mathf.Atan2(inputDirection.x, inputDirection.z);
+                var atan2 = Mathf.Atan2(_inputDirection.x, _inputDirection.z);
                 _targetRotation = atan2 * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
             }
 

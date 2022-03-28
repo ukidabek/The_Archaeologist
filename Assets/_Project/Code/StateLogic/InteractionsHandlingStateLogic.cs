@@ -1,4 +1,4 @@
-using Interactions;
+using Logic.Interactions;
 using Logic.States;
 using StarterAssets;
 using UnityEngine;
@@ -24,8 +24,10 @@ namespace Code.StateLogic
             if (_inputs.interact)
             {
                 _inputs.interact = false;
-                _interactionManager.Interact();
+                _interactionManager.ManualInteract();
             }
+            
+            _interactionManager.AutoInteract();
         }
         
         public override void Deactivate()

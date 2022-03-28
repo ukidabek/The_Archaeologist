@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Interactions;
 using UnityEngine;
 
-namespace Code.StateLogic
+namespace Logic.Interactions
 {
     public abstract class InteractionDetectorBase : MonoBehaviour
     {

@@ -2,6 +2,8 @@
 {
     public abstract class StateTransitionLogicWithCoroutineBase : StateTransitionLogicBase
     {
+        protected CoroutineManager _manager;
+
         protected override void Awake()
         {
             base.Awake();

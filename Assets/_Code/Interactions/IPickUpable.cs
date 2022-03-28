@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Interactions
+namespace Logic.Interactions
 {
     public interface IPickUpable
     {

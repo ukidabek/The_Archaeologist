@@ -33,7 +33,7 @@ namespace Logic.States
 
         private IState _fromState = null;
         private IState _toState = null;
-        protected CoroutineManager _manager;
+        
         protected ITransitionLogicTriggerCondition _condition = null;
         
         protected virtual void Awake()
