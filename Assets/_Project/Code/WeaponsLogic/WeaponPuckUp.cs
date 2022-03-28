@@ -1,4 +1,4 @@
-﻿using Interactions;
+﻿using Logic.Interactions;
 using UnityEngine;
 using Weapons;
 using Object = UnityEngine.Object;
@@ -11,14 +11,13 @@ namespace PickUps
         [SerializeField] private Weapon _weapon = null;
         [SerializeField] private Collider _collider = null;
 
+        public bool AutoInteraction => false;
         public bool Interactable => enabled;
 
         public void Interact(Object user)
         {
-            var userGameObject = user as GameObject;
-            if (userGameObject == null) return;
-            
-            var weaponManager = userGameObject.GetComponent<WeaponManager>();
+            var weaponManager = user.GetComponent<WeaponManager>();
+            if(weaponManager == null) return;
             weaponManager.EquipToSlot(_weapon);
 
             _collider.enabled = false;
