@@ -3990,7 +3990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4eaed1832f45c4b1322e1b6ded5784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _items: []
+  _itemSlots: []
 --- !u!114 &4416926083347132249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4023,8 +4023,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  _detectionInterval: 1
-  counter: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &3342098121870789444
 MonoBehaviour:
   m_ObjectHideFlags: 0

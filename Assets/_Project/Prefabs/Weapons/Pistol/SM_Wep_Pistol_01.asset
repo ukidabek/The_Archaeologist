@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bde07983d0410c96a801a808eb4981, type: 3}
+  m_Name: SM_Wep_Pistol_01
+  m_EditorClassIdentifier: 
+  _displayName: Pistol
+  _isStackable: 0
+  _itemPrefab: {fileID: 3258026242924682428, guid: aba8c3d010ece754a8481b69e52d6546, type: 3}

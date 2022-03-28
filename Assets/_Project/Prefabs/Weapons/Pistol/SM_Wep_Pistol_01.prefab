@@ -105,8 +105,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5038127265093925116}
   - component: {fileID: 617769987509342418}
-  - component: {fileID: 7458273944250751362}
-  - component: {fileID: 6784399492034248850}
   m_Layer: 3
   m_Name: SM_Wep_Pistol_01
   m_TagString: Untagged
@@ -149,33 +147,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95bf4a7d1ced36a49a0f8ce4b1460b3f, type: 2}
   _weaponLogics:
   - {fileID: 6003446475273048648}
---- !u!114 &7458273944250751362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3258026242924682428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77dfbcdb9914e249bd475736bacaaf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: 617769987509342418}
-  _collider: {fileID: 6784399492034248850}
---- !u!65 &6784399492034248850
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3258026242924682428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.045704857, y: 0.19918776, z: 0.48679438}
-  m_Center: {x: -0.04715106, y: 0.02449731, z: 0.2877311}
 --- !u!1 &4183672174814209983
 GameObject:
   m_ObjectHideFlags: 0
