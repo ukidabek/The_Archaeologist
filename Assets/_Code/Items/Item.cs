@@ -2,7 +2,7 @@
 
 namespace Logic.Items
 {
-    [CreateAssetMenu(fileName = "Item", menuName = "Equipment/Item")]
+    [CreateAssetMenu(fileName = "Item", menuName = "Equipment/Items/Item")]
     public class Item : ScriptableObject, IItem
     {
         public string Name => name;
@@ -12,5 +12,8 @@ namespace Logic.Items
         
         [SerializeField] private bool _isStackable = false;
         public bool IsStackable => _isStackable;
+
+        [SerializeField] private GameObject _itemPrefab = null;
+        public GameObject ItemPrefab => _itemPrefab;
     }
 }
