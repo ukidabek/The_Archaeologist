@@ -1,23 +1,21 @@
 ﻿using Logic.States;
 using UnityEngine;
+using Utilities.General;
 using Weapons;
 
 namespace Code.StateLogic
 {
-    public class WeaponSelectionStateLogic : Logic.States.StateLogic, IOnUpdateLogic
+    public class WeaponSelectionStateLogic : Logic.States.StateLogic
     {
         [SerializeField] private WeaponManagerModel _weaponManagerModel = null;
 
+        private readonly CursorStateHandler _cursorStateHandler = new CursorStateHandler();
+        
         private bool _visibleStatus = false;
         private CursorLockMode _lockState = CursorLockMode.None;
         public override void Activate()
         {
-            _visibleStatus = Cursor.visible;
-            _lockState = Cursor.lockState;
-            
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            
+            _cursorStateHandler.Set(CursorLockMode.None, true);
             _weaponManagerModel.ShowUI(true);
         }
 
@@ -29,13 +27,7 @@ namespace Code.StateLogic
             var index = _weaponManagerModel.SelectedWeaponIndex;
             manager.Equip(index);
             
-            Cursor.visible = _visibleStatus;
-            Cursor.lockState = _lockState;
-        }
-
-        public void OnUpdate(float deltaTime)
-        {
-            
+            _cursorStateHandler.Restore();
         }
     }
 }

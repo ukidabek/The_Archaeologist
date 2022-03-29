@@ -7,13 +7,21 @@ using Object = UnityEngine.Object;
 public class ItemPickUp : MonoBehaviour, IInteractable
 {
     [SerializeField] private Item _item = null;
+    public Item Item
+    {
+        get => _item;
+        set => _item = value;
+    }
+
     [SerializeField] private int _count = 5;
+    
     [SerializeField] private bool _autoInteraction = false;
     [SerializeField] private GameObject _itemPrefabInstance = null;
 
     public bool AutoInteraction => _autoInteraction;
 
     public bool Interactable => true;
+    
     public void Interact(Object user)
     {
         var inventory = user.GetComponent<Inventory>();
@@ -23,13 +31,9 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         gameObject.SetActive(false);
     }
 
-    public void OnSelected()
-    {
-    }
+    public void OnSelected() { }
 
-    public void OnDeselected()
-    {
-    }
+    public void OnDeselected() { }
     
 #if UNITY_EDITOR
     [ContextMenu("Create prefab instance")]

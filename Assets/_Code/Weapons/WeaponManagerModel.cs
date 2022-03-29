@@ -3,7 +3,7 @@ using Utilities.UI;
 
 namespace Weapons
 {
-    [CreateAssetMenu(fileName = "WeaponManagerModel", menuName = "Weapons/WeaponManagerModel")]
+    [CreateAssetMenu(fileName = "WeaponManagerModel", menuName = "UI/Models/WeaponManagerModel")]
     public class WeaponManagerModel : ManagerModelBase<WeaponManager>
     {
         [SerializeField] private int _selectedWeaponIndex = 0;

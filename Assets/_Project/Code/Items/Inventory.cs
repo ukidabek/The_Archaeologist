@@ -6,14 +6,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour, IItemCollection<ItemSlot>
 {
-    [SerializeField] private List<ItemSlot> _itemSlots = new List<ItemSlot>();
-    
-    private ItemCollection<ItemSlot> _itemCollection = null;
-
-    private void Awake()
-    {
-        _itemCollection = new ItemCollection<ItemSlot>(_itemSlots);
-    }
+    [SerializeField] private ItemCollection _itemCollection = null;
+    public ItemCollection ItemCollection => _itemCollection;
 
     public ReadOnlyCollection<ItemSlot> Items { get; }
     public void AddItem(IItem item, int count = 1) => _itemCollection.AddItem(item, count);

@@ -15,6 +15,8 @@ namespace StarterAssets
 		public bool aim;
 		public bool pull;
 		public bool interact;
+		public bool inventory;
+
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -76,9 +78,9 @@ namespace StarterAssets
 			InteractReload(value.isPressed);
 		}
 
-		private void InteractReload(bool newReloadValue)
+		public void OnInventory(InputValue value)
 		{
-			reload = newReloadValue;
+			InteractInventory(value.isPressed);
 		}
 
 #else
@@ -89,7 +91,7 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -105,25 +107,35 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
+
 		public void AimInput(bool newAimState)
 		{
 			aim = newAimState;
 		}
-		
+
 		private void FireInput(bool newFireState)
 		{
 			fire = newFireState;
 		}
-		
+
 		private void PullInput(bool newPullState)
 		{
 			pull = newPullState;
 		}
-		
+
+		private void InteractReload(bool newReloadValue)
+		{
+			reload = newReloadValue;
+		}
+
 		private void InteractInput(bool newInteractState)
 		{
 			interact = newInteractState;
+		}
+
+		private void InteractInventory(bool newInventoryValue)
+		{
+			inventory = newInventoryValue;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID

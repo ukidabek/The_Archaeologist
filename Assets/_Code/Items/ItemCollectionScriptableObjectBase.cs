@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using UnityEngine;
 
 namespace Logic.Items
 {
-    public class ItemCollection<T>: IItemCollection<T> where T:IItemSlot, new()
+    public class ItemCollectionScriptableObjectBase<T> : ScriptableObject, IItemCollection<T> where T:IItemSlot, new()
     {
-        private readonly List<T> _itemsSlots;
-        public ReadOnlyCollection<T> Items { get; }
+        [SerializeField] private List<T> _itemsSlots = new List<T>();
+        public ReadOnlyCollection<T> Items { get; protected set; }
         
-        public ItemCollection(List<T> _slots)
+        private void OnEnable()
         {
-            Items = new ReadOnlyCollection<T>(_itemsSlots = _slots);
+            _itemsSlots.Clear();
+            Items = new ReadOnlyCollection<T>(_itemsSlots);
         }
 
         public void AddItem(IItem item, int count = 1)
