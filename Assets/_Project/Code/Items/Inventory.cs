@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Logic.Items;
 using UnityEngine;
 
@@ -19,4 +20,12 @@ public class Inventory : MonoBehaviour, IItemCollection<ItemSlot>
     public bool HasItem(IItem item) => _itemCollection.HasItem(item);
 
     public Func<ItemSlot> CreateSlot => () => new ItemSlot();
+
+    [SerializeField] private EquipLogicBase[] _equipLogic = null;
+    
+    public void EquipItem(IEquipment equipment)
+    {
+        var equipLogic = _equipLogic.FirstOrDefault(logic => logic.CanBeHandled(equipment));
+        equipLogic?.Equip(equipment);
+    }
 }

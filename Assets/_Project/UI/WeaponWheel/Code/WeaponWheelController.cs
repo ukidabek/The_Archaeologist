@@ -1,3 +1,4 @@
+using Logic.Items;
 using UnityEngine;
 using Utilities.UI;
 using Weapons;
@@ -24,17 +25,25 @@ namespace UI.WeaponWheel.Code
         {
             var slots = Manager.Slots;
             var segmentsEnumerator = _buttons.GetEnumerator();
-            
+
             foreach (var weaponSlot in slots)
             {
                 if (segmentsEnumerator.MoveNext() == false)
                     break;
 
                 var currentSegment = segmentsEnumerator.Current as WeaponWheelSegment;
-                if(currentSegment == null)
+                if (currentSegment == null)
                     break;
 
-                currentSegment.Text = weaponSlot.StoredWeapon == null ? "Empty" : weaponSlot.StoredWeapon.name;
+                if (weaponSlot.Full == false)
+                {
+                    currentSegment.Text = "Empty";
+                    continue;
+                }
+
+                var storedWeapon = weaponSlot.StoredWeapon;
+                var itemData = storedWeapon.GetComponent<ItemData>();
+                currentSegment.Text = itemData != null ? itemData.DisplayName : storedWeapon.name;
             }
         }
     }

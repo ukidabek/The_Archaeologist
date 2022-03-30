@@ -6,8 +6,8 @@ using Object = UnityEngine.Object;
 
 public class ItemPickUp : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Item _item = null;
-    public Item Item
+    [SerializeField] private ItemWitchPrefab _item = null;
+    public ItemWitchPrefab Item
     {
         get => _item;
         set => _item = value;
@@ -45,7 +45,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         if (_item == null || _item.ItemPrefab == null) return;
 
         var prefabInstance = UnityEditor.PrefabUtility.InstantiatePrefab(_item.ItemPrefab);
-        _itemPrefabInstance = prefabInstance as GameObject;
+        _itemPrefabInstance = (prefabInstance as ItemData).gameObject;
         var prefabInstanceTransform = _itemPrefabInstance.transform;
         prefabInstanceTransform.SetParent(transform);
         prefabInstanceTransform.localPosition = Vector3.zero;

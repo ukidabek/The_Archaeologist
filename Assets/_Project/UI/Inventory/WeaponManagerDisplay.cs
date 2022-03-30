@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Weapons;
@@ -19,7 +18,7 @@ public class WeaponManagerDisplay : MonoBehaviour
         {
             if(weponsDisplay.MoveNext() == false) return;
             var weaponDisplay = weponsDisplay.Current;
-            weaponDisplay.Initialize(weaponSlot.StoredWeapon);
+            weaponDisplay.Initialize(weaponSlot);
         }
     }
 }

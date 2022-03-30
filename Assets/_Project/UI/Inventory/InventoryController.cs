@@ -1,19 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using Logic.Items;
 using UnityEngine;
 using Utilities.UI;
-using Weapons;
 
 public class InventoryController :  ManagerModelViewBase<Inventory, InventoryModel>
 {
     public ItemCollection ItemCollection => Manager.ItemCollection;
-    [SerializeField] private WeaponManagerModel _weaponManagerModel = null;
-
-    public WeaponManagerModel WeaponManagerModel => _weaponManagerModel;
 
     [SerializeField] private InventoryButtonControllerBase[] _buttonControllers = null;
 
-    [Space] [SerializeField]
+    [Space] 
+    [SerializeField]
     private List<InventoryButtonControllerBase> _buttonInstances = new List<InventoryButtonControllerBase>();
 
     [SerializeField] private Transform _buttonParent = null;
@@ -37,5 +35,8 @@ public class InventoryController :  ManagerModelViewBase<Inventory, InventoryMod
         if(_buttonInstances.Any() == false) return;
         foreach (var inventoryButton in _buttonInstances) 
             Destroy(inventoryButton.gameObject);
+        _buttonInstances.Clear();
     }
+
+    public void PassToEquip(IEquipment equipment) => Manager.EquipItem(equipment);
 }

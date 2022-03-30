@@ -7,6 +7,9 @@ namespace Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        [SerializeField] private string _displayName = null;
+        public string DisplayName => _displayName;
+
         [SerializeField] private HandSpot[] _handSpots = null;
         public HandSpot[] HandSpots => _handSpots;
 

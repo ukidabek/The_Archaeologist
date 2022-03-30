@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Weapons
 {
+    
     public class WeaponSlot : MonoBehaviour
     {
         [SerializeField] private WeaponDescriptor[] _requirements;
@@ -11,6 +13,8 @@ namespace Weapons
         public Weapon StoredWeapon => _storedWeapon;
 
         public bool Full => _storedWeapon != null;
+
+        public UnityEvent OnWeaponEquipped = new UnityEvent();
 
         public bool ValidateRequirement(IEnumerable<WeaponDescriptor> weponDecriptors)
         {
@@ -35,6 +39,7 @@ namespace Weapons
         {
             _storedWeapon = weapon;
             ReParentWeapon(transform);
+            OnWeaponEquipped.Invoke();
         }
 
         private void ReParentWeapon(Transform parent)
