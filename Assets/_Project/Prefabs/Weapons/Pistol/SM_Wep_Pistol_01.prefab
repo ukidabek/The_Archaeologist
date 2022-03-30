@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5038127265093925116}
   - component: {fileID: 617769987509342418}
+  - component: {fileID: 3331770944766658188}
   m_Layer: 3
   m_Name: SM_Wep_Pistol_01
   m_TagString: Untagged
@@ -141,12 +142,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a80944fa16f264f94c7ac678940649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _displayName: 
   _handSpots: []
   _descriptors:
   - {fileID: 11400000, guid: 94b2b8c100dd5494689b9413f8b57410, type: 2}
   - {fileID: 11400000, guid: 95bf4a7d1ced36a49a0f8ce4b1460b3f, type: 2}
   _weaponLogics:
   - {fileID: 6003446475273048648}
+--- !u!114 &3331770944766658188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258026242924682428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9245d322f077441582744178d21801f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayName: Pistol
 --- !u!1 &4183672174814209983
 GameObject:
   m_ObjectHideFlags: 0

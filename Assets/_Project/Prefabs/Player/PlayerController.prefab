@@ -465,6 +465,9 @@ MonoBehaviour:
   _requirements:
   - {fileID: 11400000, guid: 95bf4a7d1ced36a49a0f8ce4b1460b3f, type: 2}
   _storedWeapon: {fileID: 0}
+  OnWeaponEquipped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &602402683
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +809,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _requirements: []
   _storedWeapon: {fileID: 0}
+  OnWeaponEquipped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1240207682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022513cfbfad4d03933ff0506e233797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryModel: {fileID: 11400000, guid: d70a3242b9f20834cbc8969986773965, type: 2}
 --- !u!1 &6367379479128444396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2355,7 @@ MonoBehaviour:
   - {fileID: 6367379479756390368}
   - {fileID: 6367379480608619002}
   - {fileID: 4909666473815100353}
+  - {fileID: 1165147011171111224}
 --- !u!1 &6367379479909387126
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3246,9 @@ MonoBehaviour:
   _requirements:
   - {fileID: 11400000, guid: 6e976d7d53abf6a4b95175f647e575bd, type: 2}
   _storedWeapon: {fileID: 0}
+  OnWeaponEquipped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6367379480696812910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3750,6 +3761,7 @@ GameObject:
   - component: {fileID: 7282719962800121255}
   - component: {fileID: 2597676659819659095}
   - component: {fileID: 6326303712960893381}
+  - component: {fileID: 3464403477715314402}
   - component: {fileID: 4416926083347132249}
   - component: {fileID: 8579046143329588763}
   - component: {fileID: 3342098121870789444}
@@ -4165,6 +4177,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemCollection: {fileID: 11400000, guid: fa4d203f1da06894aa3e3dca3d3d570b, type: 2}
+  _equipLogic:
+  - {fileID: 3464403477715314402}
+--- !u!114 &3464403477715314402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282719962800121260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfabce8860cd4d1391479938e22b9455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponManager: {fileID: 7282719962800121255}
 --- !u!114 &4416926083347132249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4243,7 +4270,7 @@ GameObject:
   - component: {fileID: 1746615609762843602}
   - component: {fileID: 8974419968582201342}
   m_Layer: 8
-  m_Name: GoToInventoryStateStateLogic
+  m_Name: GoToNormalStateStateLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4291,7 +4318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 0
   _stateMachineInstance: {fileID: 7282719962800121257}
-  _stateToEnter: {fileID: 1664298799}
+  _stateToEnter: {fileID: 6367379480146270379}
   _conditionsObjects:
   - {fileID: 1746615609762843602}
 --- !u!1 &7778013343415954603

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7bde07983d0410c96a801a808eb4981, type: 3}
-  m_Name: SM_Wep_Pistol_01
+  m_Name: SM_Wep_SMG_01
   m_EditorClassIdentifier: 
   _isStackable: 0
-  _itemPrefab: {fileID: 3331770944766658188, guid: aba8c3d010ece754a8481b69e52d6546, type: 3}
+  _itemPrefab: {fileID: 3638932798053480519, guid: a00a46900291b714aab003a57dd045e1, type: 3}
