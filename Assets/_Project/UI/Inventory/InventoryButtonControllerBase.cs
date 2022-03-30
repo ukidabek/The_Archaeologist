@@ -5,17 +5,13 @@ using UnityEngine.UI;
 public abstract class InventoryButtonControllerBase : MonoBehaviour
 {
     [SerializeField] protected InventoryController _inventoryController = null;
-    [SerializeField] protected Button _button = null;
-    protected IItem _item;
+    protected IItemSlot _ItemSlot;
     
     public abstract bool AcceptItem(IItem item);
 
-    public virtual void Initialize(IItem item, InventoryController inventoryController)
+    public virtual void Initialize(IItemSlot itemSlot, InventoryController inventoryController)
     {
-        _button.onClick.AddListener(PerformActionOnItem);
         _inventoryController = inventoryController;
-        _item = item;
+        _ItemSlot = itemSlot;
     }
-    
-    protected abstract void PerformActionOnItem();
 }

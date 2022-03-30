@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9a0e8567e0461dae8b68fc1a19ef1d, type: 3}
-  m_Name: Scrap
+  m_Script: {fileID: 11500000, guid: 93ab851a237e46adb9e829d5c71c55e4, type: 3}
+  m_Name: Scrap 1
   m_EditorClassIdentifier: 
-  _isStackable: 1
-  _itemPrefab: {fileID: 0}
+  _displayName: Scrap

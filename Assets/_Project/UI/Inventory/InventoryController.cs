@@ -25,7 +25,7 @@ public class InventoryController :  ManagerModelViewBase<Inventory, InventoryMod
             var item = itemSlot.Item;
             var prefab = _buttonControllers.FirstOrDefault(baseButton => baseButton.AcceptItem(item));
             var instance = Instantiate(prefab, _buttonParent, false);
-            instance.Initialize(item, this);
+            instance.Initialize(itemSlot, this);
             _buttonInstances.Add(instance);
         }
     }
