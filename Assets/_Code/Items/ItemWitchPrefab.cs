@@ -5,7 +5,6 @@ namespace Logic.Items
     [CreateAssetMenu(fileName = "Item", menuName = "Equipment/Items/Item")]
     public class ItemWitchPrefab : ItemBase
     {
-        public override string Name => name;
         public override string DisplayName => _itemPrefab.DisplayName;
 
         [SerializeField] private bool _isStackable = false;

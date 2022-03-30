@@ -5,14 +5,14 @@ using UnityEngine;
 [Serializable]
 public class ItemSlot : IItemSlot
 {
-    [SerializeField] private ItemWitchPrefab _item;
+    [SerializeField] private ItemBase _item;
 
     public IItem Item
     {
         get => _item;
         set
         {
-            if (value is ItemWitchPrefab item)
+            if (value is ItemBase item)
                 _item = item;
         }
     }

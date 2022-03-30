@@ -24,7 +24,7 @@ namespace Logic.Items
                 var slot = new T()
                 {
                     Item = item,
-                    Count = 1
+                    Count = item.IsStackable ? count : 1
                 };
                 _itemsSlots.Add(slot);
             }

@@ -4,7 +4,8 @@ using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class ItemPickUp : MonoBehaviour, IInteractable
+
+public class ItemWitchPrefabPickUp : MonoBehaviour, IInteractable
 {
     [SerializeField] private ItemWitchPrefab _item = null;
     public ItemWitchPrefab Item
@@ -13,7 +14,6 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         set => _item = value;
     }
 
-    [SerializeField] private int _count = 5;
     
     [SerializeField] private bool _autoInteraction = false;
     [SerializeField] private GameObject _itemPrefabInstance = null;
@@ -27,7 +27,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         var inventory = user.GetComponent<Inventory>();
         if(inventory == null) return;
         
-        inventory.AddItem(_item, _count);
+        inventory.AddItem(_item);
         gameObject.SetActive(false);
     }
 
