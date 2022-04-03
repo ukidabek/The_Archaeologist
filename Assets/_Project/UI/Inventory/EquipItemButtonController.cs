@@ -20,7 +20,7 @@ public class EquipItemButtonController : InventoryButtonControllerBase
 
     private void PerformActionOnItem()
     {
-        var equipment = (IEquipment)_ItemSlot;
+        var equipment = (IEquipment)_ItemSlot.Item;
         _inventoryController.PassToEquip(equipment);
     }
 }
