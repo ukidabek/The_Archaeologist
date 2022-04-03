@@ -1,14 +1,21 @@
+using Logic.Statistics;
 using UnityEngine;
 using Weapons;
 
 public class Damageable : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _health = 100;
+    [SerializeField] private StatisticManager _statisticManager = null;
+    [SerializeField] private StatisticId _healthStatisticID = null;
+
+    [SerializeField] private RangeStatistic _rangeStatistic = null;
+    
+    private void Awake()
+    {
+        _rangeStatistic = _statisticManager.GetStatistic<RangeStatistic>(new[] {_healthStatisticID});
+    }
 
     public void DealDamage(IDamage damage)
     {
-        _health -= damage.Amount;
-        if (_health <= 0)
-            Destroy(gameObject);
+        _rangeStatistic.CurrentValue -= damage.Amount;
     }
 }

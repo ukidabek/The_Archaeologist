@@ -1,6 +1,7 @@
 ﻿using Logic.States;
 using StarterAssets;
 using UnityEngine;
+using Utilities.Values;
 
 namespace Code.StateLogic
 {
@@ -10,13 +11,25 @@ namespace Code.StateLogic
         [SerializeField] protected StarterAssetsInputs _input;
         [SerializeField] protected GameObject _mainCamera;
 
+        
+
         [Space]
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        [SerializeField] private FloatValueReference _moveSpeed = new FloatValueReference(2f);
+        public float MoveSpeed
+        {
+            get => _moveSpeed;
+            set => _moveSpeed.Value = value;
+        }
 
+        [SerializeField] private FloatValueReference _sprintSpeed = new FloatValueReference(5.335f);
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float SprintSpeed 
+        {
+            get => _sprintSpeed;
+            set => _sprintSpeed.Value = value;
+        }
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
