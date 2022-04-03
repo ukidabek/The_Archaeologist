@@ -31,6 +31,8 @@ namespace Utilities.Values
             }
         }
 
+        public void SetValue(T value) => Value = value;
+
         public static implicit operator T(BaseValue<T> value) => value.m_value;
     }
 }

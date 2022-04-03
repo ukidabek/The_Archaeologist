@@ -30,6 +30,13 @@ namespace Utilities.Values
             }
         }
 
+        public BaseValueReference() { }
+        
+        public BaseValueReference(T1 defaultValue)
+        {
+            m_value = defaultValue;
+        }
+        
         public static implicit operator T1(BaseValueReference<T, T1> value) => value.Value;
     }
 }
