@@ -6,8 +6,8 @@ public class Damageable : MonoBehaviour, IDamageable
 {
     [SerializeField] private StatisticManager _statisticManager = null;
     [SerializeField] private StatisticId _healthStatisticID = null;
-
-    [SerializeField] private RangeStatistic _rangeStatistic = null;
+    
+    private RangeStatistic _rangeStatistic = null;
     
     private void Awake()
     {
