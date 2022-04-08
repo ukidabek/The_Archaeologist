@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Weapons
 {
@@ -8,9 +7,12 @@ namespace Weapons
         [SerializeField] private float _speed = 10f;
         [SerializeField] private Rigidbody _rigidbody = null;
         [SerializeField] private float _distance = 10f;
+
+        [SerializeField] private Damage _damage;
         
         private Vector3 _startPosition = Vector3.zero;
-
+        
+        
         private void OnEnable()
         {
             _startPosition = transform.position;
@@ -30,6 +32,8 @@ namespace Weapons
 
         private void OnTriggerEnter(Collider other)
         {
+            var damageable = other.gameObject.GetComponent<IDamageable>();
+            damageable?.DealDamage(_damage);
             Destroy(gameObject);
         }
     }

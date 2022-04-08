@@ -9,10 +9,5 @@ namespace Code.StateLogic
         [SerializeField] protected StarterAssetsInputs _input = null;
         [SerializeField] private bool _pullStatus = true;
         public override bool Condition => _pullStatus == _input.pull;
-        
-        // public override void Activate()
-        // {
-        //     _input.pull = false;
-        // }
     }
 }
